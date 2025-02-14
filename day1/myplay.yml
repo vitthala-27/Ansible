@@ -1,0 +1,17 @@
+- name: myplay1
+  hosts: localhost
+  become: true
+  connection: local
+  tasks:
+   - name: to install apache
+     apt:
+        name: apache2
+        state: present
+   - name: to stop nginx
+     service: 
+       name: nginx
+       state: stopped
+   - name: to start apache
+     service:
+       name: apache2
+       state: started

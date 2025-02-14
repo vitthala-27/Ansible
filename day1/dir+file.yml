@@ -1,0 +1,17 @@
+ - name: mybook
+   hosts: localhost
+   become: true
+   connection: local
+   tasks:
+      - name: to create a file
+        file: 
+          name: myfile.txt
+          state: touch
+      - name: to create a directory
+        file:
+          name: mydir
+          state: directory
+      - name: to copy the file to directory
+        copy: 
+          src: myfile.txt
+          dest: mydir/
