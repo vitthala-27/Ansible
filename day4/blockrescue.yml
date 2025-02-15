@@ -1,0 +1,22 @@
+ - name: mybook
+   hosts: localhost
+   become: true
+   connection: local
+   tasks:
+      - block:
+        - name: to install the nginx
+          dnf:
+            name: nginx
+            service: present
+        - debug:
+            msg: "in block"
+        rescue: 
+             - name: to install
+               apt: 
+                 name: nginx
+                 state: present
+             - debug:
+                  msg: "in rescue"
+        always: 
+             - debug: 
+                   msg: "in always"

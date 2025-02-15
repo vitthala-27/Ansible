@@ -1,0 +1,8 @@
+ - name: threetier by roles
+   hosts: localhost
+   become: true
+   connection: local
+   roles:
+    - { role: nginx_role }
+    - { role: php_role }
+    - { role: db_role }

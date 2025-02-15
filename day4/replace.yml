@@ -1,0 +1,25 @@
+ - name: mybook
+   hosts: localhost
+   become: true
+   connection: local
+   vars:
+       my_port: 90
+       my_path: /var/www/html/myweb
+   tasks:
+         - name: install nginx
+           apt: name=nginx state=present
+         - name: to start nginx service
+           service: name=nginx state=started
+         - name: to create a directory
+           file: path=/var/www/html/myweb state=directory       
+         - name: to copy the file
+           copy: src=./index.html dest=/var/www/html/myweb
+         - name: to copy the confuguration file
+           template:
+                 src: ./mynginx.conf
+                 dest: /etc/nginx/sites-enabled/default           
+ 
+         - name: to reload the nginx
+           service: 
+            name: nginx
+            state: restarted
