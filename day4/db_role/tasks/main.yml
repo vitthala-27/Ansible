@@ -1,0 +1,14 @@
+---
+# tasks file for db_role
+ - name: update apt
+   apt: 
+     name: '*'
+     state: latest
+ - name: to install mariadb
+   apt: 
+    name: mariadb-server
+    state: present
+ - name:  to start mariadb
+   service:
+       name: mariadb
+       state: started

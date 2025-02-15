@@ -1,0 +1,8 @@
+---
+# handlers file for db_role
+- name: restart nignx
+  service: name=nginx state=restarted
+- name: rstart php-fpm
+  service: name=php8.3-fpm state=restarted
+- name: restart db
+  service: name=mariadb state=restarted
